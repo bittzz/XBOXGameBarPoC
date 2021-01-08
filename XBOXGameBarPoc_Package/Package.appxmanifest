@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap uap3 desktop rescap">
+
+  <Identity
+    Name="0cf2b23a-0ccb-4ee7-ac09-4dc5c03e30c1"
+    Publisher="CN=UC_bittzz"
+    Version="1.0.0.0" />
+
+  <Properties>
+    <DisplayName>XBOX_Game_Bar_PoC</DisplayName>
+    <PublisherDisplayName>UC bittzz</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="XBOX Game Bar PoC"
+        Description="XBOX Game Bar PoC"
+        BackgroundColor="transparent"
+        Square150x150Logo="Images\Square150x150Logo.png"
+        Square44x44Logo="Images\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Images\SplashScreen.png" />
+      </uap:VisualElements>
+      <Extensions>
+		  <uap3:Extension Category="windows.appExtension">
+			  <uap3:AppExtension Name="microsoft.gameBarUIExtension"
+								 Id="Widget1"
+								 DisplayName="XBOX Game Bar PoC"
+								 Description="XBOX Game Bar PoC Description"
+								 PublicFolder="GameBar">
+				  <uap3:Properties>
+					  <GameBarWidget Type="Standard">
+						  <HomeMenuVisible>true</HomeMenuVisible>
+						  <PinningSupported>true</PinningSupported>
+						  <Window>
+							  <Size>
+								  <Height>1080</Height>
+								  <Width>1920</Width>
+								  <MinHeight>1080</MinHeight>
+								  <MinWidth>1920</MinWidth>
+								  <MaxHeight>1080</MaxHeight>
+								  <MaxWidth>1920</MaxWidth>
+							  </Size>
+							  <ResizeSupported>
+								  <Horizontal>true</Horizontal>
+								  <Vertical>true</Vertical>
+							  </ResizeSupported>
+						  </Window>
+					  </GameBarWidget>
+				  </uap3:Properties>
+			  </uap3:AppExtension>
+		  </uap3:Extension>
+        <uap:Extension Category="windows.appService">
+          <uap:AppService Name="InProcessAppService" />
+        </uap:Extension>
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="XBOXGameBarPoc_Win32\XBOXGameBarPoc_Win32.exe" />
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <Capability Name="codeGeneration"/>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="allowElevation" />
+  </Capabilities>
+</Package>
